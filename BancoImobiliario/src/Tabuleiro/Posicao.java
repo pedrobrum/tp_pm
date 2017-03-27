@@ -31,10 +31,6 @@ public class Posicao {
         this.id = id;
     }
     
-    public void execute(){
-        
-    }
-    
     public static boolean isInicial(Posicao posicao){
         return posicao == null;
     }

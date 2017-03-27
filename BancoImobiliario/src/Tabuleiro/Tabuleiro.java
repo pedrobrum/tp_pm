@@ -49,8 +49,18 @@ public class Tabuleiro {
         }*/
     }
 
+    public int getQtPosicoes() {
+        return qtPosicoes;
+    }
+
+    
+    
     public int getPosicaoInicial() {
         return posicaoInicial;
+    }
+
+    public Posicao getPosicao(int i) {
+        return posicao[i];
     }
     
     

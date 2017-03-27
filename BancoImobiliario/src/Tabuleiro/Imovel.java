@@ -37,18 +37,31 @@ public class Imovel extends Posicao{
         this.taxa = taxa;
         this.dono = 0;
     }
-
-    @Override
-    public void execute() {
-        super.execute(); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public boolean isComprada(){
         return dono != 0;
     }
     
     public void comprar(Jogador dono){
+        dono.gastarImovel(valor);
         this.dono = dono.getId();
     }
+    
+    public void devolver(){
+        dono = 0;
+    }
+
+    public int getDono() {
+        return dono;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public int getTaxa() {
+        return taxa;
+    }
+
     
 }

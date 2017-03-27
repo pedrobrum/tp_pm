@@ -2,8 +2,10 @@ package Jogada;
 
 import Tabuleiro.Tabuleiro;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import javafx.util.Pair;
 
 public class Jogada {
@@ -13,6 +15,7 @@ public class Jogada {
     private final int qtJogadores;
     private final Jogador [] jogadores;
     private int jogadoresPositivos;
+    private int qtRodadas;
 
     public Jogada(String nomeArquivo) throws Exception{
         File jogadaF = new File(nomeArquivo);
@@ -33,20 +36,77 @@ public class Jogada {
             Pair<Integer, Instrucao> pair = Instrucao.formatInstrucao(config);
             instrucoes[i] = pair.getValue();
         }
-        
+        this.qtRodadas = 0;
     }
+
+    public int getQtInstrucoes() {
+        return qtInstrucoes;
+    }
+
+    public Jogador getJogadores(int i) {
+        return jogadores[i];
+    }    
     
     public void simular(Tabuleiro tabuleiro){
         for (int i = 1; i <= qtJogadores; i++){
-            jogadores[i].setPosicao(tabuleiro.getPosicaoInicial());
+            jogadores[i].setPosicaoInicial(tabuleiro.getPosicaoInicial());
         }
-        while (jogadoresPositivos == 0){
-            
+        int i = 1;
+        while (jogadoresPositivos > 1 && i <= qtInstrucoes && !Instrucao.isDump(instrucoes[i])){
+            int idJogador = instrucoes[i].getIdJogador();
+            jogadores[idJogador].andar(instrucoes[i].getValorDado(), this, tabuleiro);
+            qtRodadas++;
+            i++;
         }
     }
     
-    public void gerarEstatisticas(String nomeArquivo){
+    public void gerarEstatisticas(String nomeArquivo) throws Exception{
+        File estatisticasF = new File(nomeArquivo);
+        FileWriter estatisticasFW = new FileWriter(estatisticasF);
+        BufferedWriter estatisticasBW = new BufferedWriter(estatisticasFW);
+        estatisticasBW.append("1:" + qtRodadas + "\n");
         
+        estatisticasBW.append("2:");
+        for (int i = 1; i <= qtJogadores-1; i++){
+            estatisticasBW.append(String.valueOf(i) + "-" + jogadores[i].getQtVoltas() + ";");
+        }
+        estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getQtVoltas() + "\n");
+        
+        estatisticasBW.append("3:");
+        for (int i = 1; i <= qtJogadores-1; i++){
+            estatisticasBW.append(String.valueOf(i) + "-" + jogadores[i].getValor()+ ";");
+        }
+        estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getValor() + "\n");
+        
+        estatisticasBW.append("4:");
+        for (int i = 1; i <= qtJogadores-1; i++){
+            estatisticasBW.append(String.valueOf(i) + "-" + jogadores[i].getAluguelRecebido()+ ";");
+        }
+        estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getAluguelRecebido() + "\n");
+        
+        estatisticasBW.append("5:");
+        for (int i = 1; i <= qtJogadores-1; i++){
+            estatisticasBW.append(String.valueOf(i) + "-" + jogadores[i].getAluguelPago() + ";");
+        }
+        estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getAluguelPago() + "\n");
+        
+        estatisticasBW.append("6:");
+        for (int i = 1; i <= qtJogadores-1; i++){
+            estatisticasBW.append(String.valueOf(i) + "-" + jogadores[i].getGastoImoveis() + ";");
+        }
+        estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getGastoImoveis() + "\n");
+        
+        estatisticasBW.append("7:");
+        for (int i = 1; i <= qtJogadores-1; i++){
+            estatisticasBW.append(String.valueOf(i) + "-" + jogadores[i].getQtPassaVez() + ";");
+        }
+        estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getQtPassaVez() + "\n");
+        
+        estatisticasBW.flush();
+    }
+    
+    public void decrementarJogadores(){
+        jogadoresPositivos--;
     }
     
 }
