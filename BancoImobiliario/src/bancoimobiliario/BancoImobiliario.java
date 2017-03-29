@@ -8,8 +8,7 @@ public class BancoImobiliario {
     public static void main(String[] args) throws Exception{
         Tabuleiro tabuleiro = new Tabuleiro("tabuleiro.txt");
         Jogada jogada = new Jogada("jogadas.txt");
-        jogada.simular(tabuleiro);
-        jogada.gerarEstatisticas("estatísticas.txt");
+        jogada.simular(tabuleiro,"estatisticas.txt");
     }
     
 }

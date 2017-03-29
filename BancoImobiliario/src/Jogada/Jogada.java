@@ -6,6 +6,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import javafx.util.Pair;
 
 public class Jogada {
@@ -15,7 +17,6 @@ public class Jogada {
     private final int qtJogadores;
     private final Jogador [] jogadores;
     private int jogadoresPositivos;
-    private int qtRodadas;
 
     public Jogada(String nomeArquivo) throws Exception{
         File jogadaF = new File(nomeArquivo);
@@ -36,7 +37,6 @@ public class Jogada {
             Pair<Integer, Instrucao> pair = Instrucao.formatInstrucao(config);
             instrucoes[i] = pair.getValue();
         }
-        this.qtRodadas = 0;
     }
 
     public int getQtInstrucoes() {
@@ -47,24 +47,30 @@ public class Jogada {
         return jogadores[i];
     }    
     
-    public void simular(Tabuleiro tabuleiro){
+    public void simular(Tabuleiro tabuleiro, String nomeArquivoSaida) throws Exception{
         for (int i = 1; i <= qtJogadores; i++){
             jogadores[i].setPosicaoInicial(tabuleiro.getPosicaoInicial());
         }
-        int i = 1;
-        while (jogadoresPositivos > 1 && i <= qtInstrucoes && !Instrucao.isDump(instrucoes[i])){
-            int idJogador = instrucoes[i].getIdJogador();
-            jogadores[idJogador].andar(instrucoes[i].getValorDado(), this, tabuleiro);
-            qtRodadas++;
-            i++;
+        int inst = 1;
+        while (jogadoresPositivos > 1 && inst <= qtInstrucoes && !Instrucao.isDump(instrucoes[inst])){
+            int idJogador = instrucoes[inst].getIdJogador();
+            Jogador atual = jogadores[idJogador];
+            if (!atual.isEliminado())
+                atual.andar(instrucoes[inst].getValorDado(), this, tabuleiro);
+            if (idJogador == 3){
+                System.out.println("Jogada " + inst + "\n");
+                debug();
+                System.out.println("\n");
+            }
+            inst++;
         }
-    }
-    
-    public void gerarEstatisticas(String nomeArquivo) throws Exception{
-        File estatisticasF = new File(nomeArquivo);
+        int qtRodada = 0;
+        for (int i = 1; i <= qtJogadores; i++)
+            qtRodada = Integer.max(qtRodada, jogadores[i].getQtJogadas());
+        File estatisticasF = new File(nomeArquivoSaida);
         FileWriter estatisticasFW = new FileWriter(estatisticasF);
         BufferedWriter estatisticasBW = new BufferedWriter(estatisticasFW);
-        estatisticasBW.append("1:" + qtRodadas + "\n");
+        estatisticasBW.append("1:" + qtRodada + "\n");
         
         estatisticasBW.append("2:");
         for (int i = 1; i <= qtJogadores-1; i++){
@@ -103,6 +109,14 @@ public class Jogada {
         estatisticasBW.append(String.valueOf(qtJogadores) + "-" + jogadores[qtJogadores].getQtPassaVez() + "\n");
         
         estatisticasBW.flush();
+    }
+    
+    public void debug(){
+        for (int i = 1; i <= qtJogadores; i++){
+            System.out.println(jogadores[i]);
+        }
+        
+        
     }
     
     public void decrementarJogadores(){

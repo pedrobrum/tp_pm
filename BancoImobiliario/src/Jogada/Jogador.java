@@ -8,6 +8,7 @@ public class Jogador {
     private final int id;
     private int posicao;
     private int valor;
+    private int qtJogadas;
     private int qtVoltas;
     private int qtPassaVez;
     private int aluguelRecebido;
@@ -17,6 +18,7 @@ public class Jogador {
     public Jogador(int id, int valorInicial) {
         this.id = id;
         this.valor = valorInicial;
+        this.qtJogadas = 0;
         this.qtVoltas = 0;
         this.qtPassaVez = 0;
         this.aluguelRecebido = 0;
@@ -37,10 +39,11 @@ public class Jogador {
     }
 
     public void andar(int incremento, Jogada jogada, Tabuleiro tabuleiro) {
+        qtJogadas++;
         while (incremento > 0){
             posicao++;
-            if (posicao > tabuleiro.getQtPosicoes()){
-                posicao = (posicao % tabuleiro.getQtPosicoes()) + 1;
+            if (posicao == tabuleiro.getQtPosicoes()){
+                posicao = 1;
             }
             if (posicao == tabuleiro.getPosicaoInicial()){
                 qtVoltas++;
@@ -82,6 +85,10 @@ public class Jogador {
         }
     }
 
+    public boolean isEliminado(){
+        return posicao == 0;
+    }
+    
     public int getId() {
         return id;
     }
@@ -105,6 +112,12 @@ public class Jogador {
         return valor;
     }
 
+    public int getQtJogadas() {
+        return qtJogadas;
+    }
+
+    
+    
     public int getQtVoltas() {
         return qtVoltas;
     }
@@ -124,7 +137,17 @@ public class Jogador {
     public int getGastoImoveis() {
         return gastoImoveis;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "\n"
+             + "POSICAO: " + posicao + "\n"
+             + "VALOR: " + valor + "\n"
+            // + "QTVOLTAS: " + qtVoltas + "\n"
+            // + "QTPASSAVEZ: " + qtPassaVez + "\n"
+            // + "ALUGUELRECEBIDO: " + aluguelRecebido + "\n"
+            // + "ALUGUELPAGO: " + aluguelPago + "\n"
+            // + "GASTOIMOVEIS: " + gastoImoveis
+            ;
+    }
 }
