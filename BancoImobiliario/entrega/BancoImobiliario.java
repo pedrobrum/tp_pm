@@ -1,5 +1,3 @@
-package bancoimobiliario;
-
 import Jogada.Jogada;
 import Tabuleiro.Tabuleiro;
 

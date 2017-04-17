@@ -1,9 +1,9 @@
 all:
-	javac */*.java *.java -jar BancoImobiliario.jar
+	javac */*.java *.java
 
 clean:
 	rm -rf */*.class
 	rm -rf *.class
 
 run:
-	java -jar BancoImobiliario.jar
+	java BancoImobiliario
