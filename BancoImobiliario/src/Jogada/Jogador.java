@@ -57,10 +57,10 @@ public class Jogador {
                 if (imovel.getDono() != id){
                     Jogador dono = jogada.getJogadores(imovel.getDono());
                     double pagamento = imovel.getTaxa()*imovel.getValor()/100; //
-                    if (valor < 0){
+                    if (valor - pagamento< 0){
                         this.eliminar(jogada, tabuleiro);
                     }
-                    else{ //#TODO ver a resposta do professor no moodle
+                    else{
                         pagarAluguel(pagamento);
                         dono.receberAluguel(pagamento);
                     }
@@ -80,7 +80,8 @@ public class Jogador {
         for (int i = 1; i <= tabuleiro.getQtPosicoes(); i++){
             if (tabuleiro.getPosicao(i) instanceof Imovel){
                 Imovel imovel = (Imovel) tabuleiro.getPosicao(i);
-                imovel.devolver();
+                if (imovel.getDono() == id)
+                    imovel.devolver();
             }
         }
     }

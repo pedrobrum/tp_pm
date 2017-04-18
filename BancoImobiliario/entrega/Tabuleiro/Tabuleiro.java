@@ -39,14 +39,6 @@ public class Tabuleiro {
                 break;
             }
         this.posicaoInicial = posicaoInicial;
-        /*
-        } catch (FileNotFoundException ex) { //tabuleiro.txt não existe
-            Logger.getLogger(BancoImobiliario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) { //não tem linha em tabuleiro.txt
-            Logger.getLogger(BancoImobiliario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) { //posicao inválida
-            Logger.getLogger(Tabuleiro.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }
 
     public int getQtPosicoes() {
