@@ -26,9 +26,18 @@ public class Truco extends javax.swing.JFrame {
         labelTituloTime2 = new javax.swing.JLabel();
         labelTime1Ponto = new javax.swing.JLabel();
         labelTime2Ponto = new javax.swing.JLabel();
+        panelJ1C1 = new javax.swing.JPanel();
+        labelJ1C1N = new javax.swing.JLabel();
+        labelJ1C1S = new javax.swing.JLabel();
+        panelJ1C5 = new javax.swing.JPanel();
+        labelJ1C3N1 = new javax.swing.JLabel();
+        labelJ1C3S1 = new javax.swing.JLabel();
+        labelJ1C2N = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panelBase.setMaximumSize(new java.awt.Dimension(500, 500));
+        panelBase.setMinimumSize(new java.awt.Dimension(500, 500));
         panelBase.setPreferredSize(new java.awt.Dimension(500, 500));
 
         buttonIniciar.setText("Iniciar");
@@ -39,6 +48,7 @@ public class Truco extends javax.swing.JFrame {
         });
 
         panelPontuacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelPontuacao.setMaximumSize(new java.awt.Dimension(100, 100));
 
         labelTituloPontuacao.setText("Pontuação");
 
@@ -87,22 +97,100 @@ public class Truco extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panelJ1C1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelJ1C1.setMaximumSize(new java.awt.Dimension(100, 100));
+
+        labelJ1C1N.setText("?");
+
+        labelJ1C1S.setText("?");
+
+        javax.swing.GroupLayout panelJ1C1Layout = new javax.swing.GroupLayout(panelJ1C1);
+        panelJ1C1.setLayout(panelJ1C1Layout);
+        panelJ1C1Layout.setHorizontalGroup(
+            panelJ1C1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ1C1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelJ1C1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelJ1C1N)
+                    .addComponent(labelJ1C1S))
+                .addGap(35, 35, 35))
+        );
+        panelJ1C1Layout.setVerticalGroup(
+            panelJ1C1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ1C1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelJ1C1N)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(labelJ1C1S)
+                .addContainerGap())
+        );
+
+        panelJ1C5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelJ1C5.setMaximumSize(new java.awt.Dimension(100, 100));
+        panelJ1C5.setMinimumSize(new java.awt.Dimension(100, 100));
+
+        labelJ1C3N1.setText("?");
+
+        labelJ1C3S1.setText("?");
+
+        javax.swing.GroupLayout panelJ1C5Layout = new javax.swing.GroupLayout(panelJ1C5);
+        panelJ1C5.setLayout(panelJ1C5Layout);
+        panelJ1C5Layout.setHorizontalGroup(
+            panelJ1C5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ1C5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelJ1C5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelJ1C3N1)
+                    .addComponent(labelJ1C3S1))
+                .addGap(35, 35, 35))
+        );
+        panelJ1C5Layout.setVerticalGroup(
+            panelJ1C5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ1C5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelJ1C3N1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(labelJ1C3S1)
+                .addContainerGap())
+        );
+
+        labelJ1C2N.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelJ1C2N.setText("🂲");
+
         javax.swing.GroupLayout panelBaseLayout = new javax.swing.GroupLayout(panelBase);
         panelBase.setLayout(panelBaseLayout);
         panelBaseLayout.setHorizontalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonIniciar))
             .addGroup(panelBaseLayout.createSequentialGroup()
                 .addComponent(panelPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 398, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelBaseLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(panelJ1C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelJ1C5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBaseLayout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(buttonIniciar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelJ1C2N)
+                .addGap(21, 21, 21))
         );
         panelBaseLayout.setVerticalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
+            .addGroup(panelBaseLayout.createSequentialGroup()
                 .addComponent(panelPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelJ1C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(labelJ1C2N)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(panelJ1C5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
                 .addComponent(buttonIniciar))
         );
 
@@ -110,13 +198,14 @@ public class Truco extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(panelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(panelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -141,12 +230,22 @@ public class Truco extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonIniciar;
+    private javax.swing.JLabel labelJ1C1N;
+    private javax.swing.JLabel labelJ1C1S;
+    private javax.swing.JLabel labelJ1C2N;
+    private javax.swing.JLabel labelJ1C2N1;
+    private javax.swing.JLabel labelJ1C2S1;
+    private javax.swing.JLabel labelJ1C3N1;
+    private javax.swing.JLabel labelJ1C3S1;
     private javax.swing.JLabel labelTime1Ponto;
     private javax.swing.JLabel labelTime2Ponto;
     private javax.swing.JLabel labelTituloPontuacao;
     private javax.swing.JLabel labelTituloTime1;
     private javax.swing.JLabel labelTituloTime2;
     private javax.swing.JPanel panelBase;
+    private javax.swing.JPanel panelJ1C1;
+    private javax.swing.JPanel panelJ1C4;
+    private javax.swing.JPanel panelJ1C5;
     private javax.swing.JPanel panelPontuacao;
     // End of variables declaration//GEN-END:variables
 }
