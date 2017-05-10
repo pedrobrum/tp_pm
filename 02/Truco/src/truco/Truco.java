@@ -5,15 +5,25 @@ import javax.swing.JButton;
 public class Truco extends javax.swing.JFrame {
 
     
+    private final Time time[];
     private final Jogador jogador[];
+    private int primeiro;
+    private int atual;
     
     public Truco() {
         initComponents();
-        jogador = new Jogador[4];
-        jogador[0] = new Jogador(new JButton[]{buttonJ0C0, buttonJ0C1, buttonJ0C2}, buttonJ0C);
-//        jogador[1] = new Jogador(new JLabel[]{labelJ1C0, labelJ1C1, labelJ1C2}, labelJ1C);
-//        jogador[2] = new Jogador(new JLabel[]{labelJ2C0, labelJ2C1, labelJ2C2}, labelJ2C);
-//        jogador[3] = new Jogador(new JLabel[]{labelJ3C0, labelJ3C1, labelJ3C2}, labelJ3C);
+        jogador = new Jogador[]{
+            new Jogador(new JButton[]{buttonJ0C0, buttonJ0C1, buttonJ0C2}, buttonJ0C),
+            new Jogador(new JButton[]{buttonJ1C0, buttonJ1C1, buttonJ1C2}, buttonJ1C),
+            new Jogador(new JButton[]{buttonJ2C0, buttonJ2C1, buttonJ2C2}, buttonJ2C),
+            new Jogador(new JButton[]{buttonJ3C0, buttonJ3C1, buttonJ3C2}, buttonJ3C)
+        };
+        time = new Time[]{
+            new Time(labelTime0Ponto),
+            new Time(labelTime1Ponto)
+        };
+        atual = -1;
+        iniciarJogo();
     }
 
     @SuppressWarnings("unchecked")
@@ -24,23 +34,26 @@ public class Truco extends javax.swing.JFrame {
         buttonIniciar = new javax.swing.JButton();
         panelPontuacao = new javax.swing.JPanel();
         labelTituloPontuacao = new javax.swing.JLabel();
+        labelTituloTime0 = new javax.swing.JLabel();
         labelTituloTime1 = new javax.swing.JLabel();
-        labelTituloTime2 = new javax.swing.JLabel();
+        labelTime0Ponto = new javax.swing.JLabel();
         labelTime1Ponto = new javax.swing.JLabel();
-        labelTime2Ponto = new javax.swing.JLabel();
-        labelJ1C0 = new javax.swing.JLabel();
-        labelJ1C1 = new javax.swing.JLabel();
-        labelJ1C2 = new javax.swing.JLabel();
-        labelJ2C0 = new javax.swing.JLabel();
-        labelJ2C1 = new javax.swing.JLabel();
-        labelJ2C2 = new javax.swing.JLabel();
-        labelJ3C0 = new javax.swing.JLabel();
-        labelJ3C1 = new javax.swing.JLabel();
-        labelJ3C2 = new javax.swing.JLabel();
         buttonJ0C = new javax.swing.JButton();
         buttonJ0C0 = new javax.swing.JButton();
         buttonJ0C1 = new javax.swing.JButton();
         buttonJ0C2 = new javax.swing.JButton();
+        buttonJ1C = new javax.swing.JButton();
+        buttonJ1C0 = new javax.swing.JButton();
+        buttonJ1C1 = new javax.swing.JButton();
+        buttonJ1C2 = new javax.swing.JButton();
+        buttonJ2C = new javax.swing.JButton();
+        buttonJ2C0 = new javax.swing.JButton();
+        buttonJ2C1 = new javax.swing.JButton();
+        buttonJ2C2 = new javax.swing.JButton();
+        buttonJ3C = new javax.swing.JButton();
+        buttonJ3C0 = new javax.swing.JButton();
+        buttonJ3C1 = new javax.swing.JButton();
+        buttonJ3C2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +61,7 @@ public class Truco extends javax.swing.JFrame {
         panelBase.setMinimumSize(new java.awt.Dimension(500, 500));
         panelBase.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        buttonIniciar.setText("Iniciar");
+        buttonIniciar.setText("Reiniciar");
         buttonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonIniciarActionPerformed(evt);
@@ -60,13 +73,13 @@ public class Truco extends javax.swing.JFrame {
 
         labelTituloPontuacao.setText("Pontuação");
 
-        labelTituloTime1.setText("- :");
+        labelTituloTime0.setText("- :");
 
-        labelTituloTime2.setText("| :");
+        labelTituloTime1.setText("| :");
+
+        labelTime0Ponto.setText("?");
 
         labelTime1Ponto.setText("?");
-
-        labelTime2Ponto.setText("?");
 
         javax.swing.GroupLayout panelPontuacaoLayout = new javax.swing.GroupLayout(panelPontuacao);
         panelPontuacao.setLayout(panelPontuacaoLayout);
@@ -80,13 +93,13 @@ public class Truco extends javax.swing.JFrame {
                         .addComponent(labelTituloPontuacao)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelPontuacaoLayout.createSequentialGroup()
+                        .addComponent(labelTituloTime0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelTime0Ponto))
+                    .addGroup(panelPontuacaoLayout.createSequentialGroup()
                         .addComponent(labelTituloTime1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelTime1Ponto))
-                    .addGroup(panelPontuacaoLayout.createSequentialGroup()
-                        .addComponent(labelTituloTime2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelTime2Ponto)))
+                        .addComponent(labelTime1Ponto)))
                 .addContainerGap())
         );
         panelPontuacaoLayout.setVerticalGroup(
@@ -96,45 +109,19 @@ public class Truco extends javax.swing.JFrame {
                 .addComponent(labelTituloPontuacao)
                 .addGap(18, 18, 18)
                 .addGroup(panelPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTituloTime1)
-                    .addComponent(labelTime1Ponto))
+                    .addComponent(labelTituloTime0)
+                    .addComponent(labelTime0Ponto))
                 .addGap(18, 18, 18)
                 .addGroup(panelPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTituloTime2)
-                    .addComponent(labelTime2Ponto))
+                    .addComponent(labelTituloTime1)
+                    .addComponent(labelTime1Ponto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        labelJ1C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ1C0.setText("🂡\t");
-
-        labelJ1C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ1C1.setText("🂡\t");
-
-        labelJ1C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ1C2.setText("🂡\t");
-
-        labelJ2C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ2C0.setText("🂡\t");
-
-        labelJ2C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ2C1.setText("🂡\t");
-
-        labelJ2C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ2C2.setText("🂡\t");
-
-        labelJ3C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ3C0.setText("🂡\t");
-
-        labelJ3C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ3C1.setText("🂡\t");
-
-        labelJ3C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        labelJ3C2.setText("🂡\t");
 
         buttonJ0C.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         buttonJ0C.setText("🂡\t");
         buttonJ0C.setBorder(null);
+        buttonJ0C.setPreferredSize(new java.awt.Dimension(55, 57));
         buttonJ0C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonJ0CActionPerformed(evt);
@@ -144,7 +131,7 @@ public class Truco extends javax.swing.JFrame {
         buttonJ0C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         buttonJ0C0.setText("?");
         buttonJ0C0.setBorder(null);
-        buttonJ0C0.setPreferredSize(new java.awt.Dimension(49, 57));
+        buttonJ0C0.setPreferredSize(new java.awt.Dimension(55, 57));
         buttonJ0C0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonJ0C0ActionPerformed(evt);
@@ -154,7 +141,7 @@ public class Truco extends javax.swing.JFrame {
         buttonJ0C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         buttonJ0C1.setText("?");
         buttonJ0C1.setBorder(null);
-        buttonJ0C1.setPreferredSize(new java.awt.Dimension(49, 57));
+        buttonJ0C1.setPreferredSize(new java.awt.Dimension(55, 57));
         buttonJ0C1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonJ0C1ActionPerformed(evt);
@@ -164,10 +151,130 @@ public class Truco extends javax.swing.JFrame {
         buttonJ0C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         buttonJ0C2.setText("?");
         buttonJ0C2.setBorder(null);
-        buttonJ0C2.setPreferredSize(new java.awt.Dimension(49, 57));
+        buttonJ0C2.setPreferredSize(new java.awt.Dimension(55, 57));
         buttonJ0C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonJ0C2ActionPerformed(evt);
+            }
+        });
+
+        buttonJ1C.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ1C.setText("🂡\t");
+        buttonJ1C.setBorder(null);
+        buttonJ1C.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ1C.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ1CActionPerformed(evt);
+            }
+        });
+
+        buttonJ1C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ1C0.setText("?");
+        buttonJ1C0.setBorder(null);
+        buttonJ1C0.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ1C0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ1C0ActionPerformed(evt);
+            }
+        });
+
+        buttonJ1C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ1C1.setText("?");
+        buttonJ1C1.setBorder(null);
+        buttonJ1C1.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ1C1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ1C1ActionPerformed(evt);
+            }
+        });
+
+        buttonJ1C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ1C2.setText("?");
+        buttonJ1C2.setBorder(null);
+        buttonJ1C2.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ1C2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ1C2ActionPerformed(evt);
+            }
+        });
+
+        buttonJ2C.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ2C.setText("🂡\t");
+        buttonJ2C.setBorder(null);
+        buttonJ2C.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ2C.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ2CActionPerformed(evt);
+            }
+        });
+
+        buttonJ2C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ2C0.setText("?");
+        buttonJ2C0.setBorder(null);
+        buttonJ2C0.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ2C0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ2C0ActionPerformed(evt);
+            }
+        });
+
+        buttonJ2C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ2C1.setText("?");
+        buttonJ2C1.setBorder(null);
+        buttonJ2C1.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ2C1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ2C1ActionPerformed(evt);
+            }
+        });
+
+        buttonJ2C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ2C2.setText("?");
+        buttonJ2C2.setBorder(null);
+        buttonJ2C2.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ2C2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ2C2ActionPerformed(evt);
+            }
+        });
+
+        buttonJ3C.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ3C.setText("🂡\t");
+        buttonJ3C.setBorder(null);
+        buttonJ3C.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ3C.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ3CActionPerformed(evt);
+            }
+        });
+
+        buttonJ3C0.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ3C0.setText("?");
+        buttonJ3C0.setBorder(null);
+        buttonJ3C0.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ3C0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ3C0ActionPerformed(evt);
+            }
+        });
+
+        buttonJ3C1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ3C1.setText("?");
+        buttonJ3C1.setBorder(null);
+        buttonJ3C1.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ3C1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ3C1ActionPerformed(evt);
+            }
+        });
+
+        buttonJ3C2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        buttonJ3C2.setText("?");
+        buttonJ3C2.setBorder(null);
+        buttonJ3C2.setPreferredSize(new java.awt.Dimension(55, 57));
+        buttonJ3C2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJ3C2ActionPerformed(evt);
             }
         });
 
@@ -176,40 +283,50 @@ public class Truco extends javax.swing.JFrame {
         panelBaseLayout.setHorizontalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBaseLayout.createSequentialGroup()
-                .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelBaseLayout.createSequentialGroup()
+                        .addComponent(panelPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelBaseLayout.createSequentialGroup()
+                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelBaseLayout.createSequentialGroup()
+                                .addContainerGap(165, Short.MAX_VALUE)
+                                .addComponent(buttonJ0C0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(panelBaseLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(buttonJ1C2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonJ0C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ0C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonJ0C2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBaseLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelJ1C0)
-                            .addComponent(labelJ1C1)
-                            .addComponent(labelJ1C2))
+                            .addComponent(buttonJ1C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ1C0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelJ3C0)
-                            .addComponent(labelJ3C1)
-                            .addComponent(labelJ3C2)))
-                    .addGroup(panelBaseLayout.createSequentialGroup()
-                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelBaseLayout.createSequentialGroup()
-                                .addComponent(panelPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                                .addComponent(labelJ2C0)
+                                .addComponent(buttonJ2C0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelJ2C1)
+                                .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonJ2C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonJ2C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelJ2C2))
+                                .addComponent(buttonJ2C2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelBaseLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonJ0C0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonJ0C)
-                                    .addGroup(panelBaseLayout.createSequentialGroup()
-                                        .addComponent(buttonJ0C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(buttonJ0C2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(buttonIniciar)))
+                                .addComponent(buttonJ1C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonJ3C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonIniciar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonJ3C0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonJ3C1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonJ3C2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         panelBaseLayout.setVerticalGroup(
@@ -220,32 +337,35 @@ public class Truco extends javax.swing.JFrame {
                     .addGroup(panelBaseLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelJ2C0)
-                            .addComponent(labelJ2C1)
-                            .addComponent(labelJ2C2))))
-                .addGap(72, 72, 72)
+                            .addComponent(buttonJ2C0, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ2C1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ2C2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelBaseLayout.createSequentialGroup()
-                        .addComponent(labelJ3C0)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelJ3C1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelJ3C2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonIniciar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(buttonJ0C0, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(buttonJ0C1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(buttonJ0C2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBaseLayout.createSequentialGroup()
-                        .addComponent(labelJ1C0)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelJ1C1)
-                        .addGap(0, 0, 0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                        .addComponent(buttonIniciar))
+                    .addGroup(panelBaseLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelJ1C2)
-                            .addComponent(buttonJ0C, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buttonJ1C0, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ2C, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ3C0, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonJ1C1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ1C, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ3C, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ3C1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonJ0C, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ1C2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ3C2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonJ0C0, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ0C1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonJ0C2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
 
@@ -264,15 +384,49 @@ public class Truco extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarActionPerformed
+    
+    private void jogarCarta(int iJ, int iC){
+        if (atual != iJ || atual == -1)
+            return;
+        jogador[iJ].jogarCarta(iC);
+        atual = (atual + 1) % 4;
+        if (atual == primeiro){
+            Carta maior[] = new Carta[]{
+                Carta.Max(jogador[0].getMesa(), jogador[2].getMesa()),
+                Carta.Max(jogador[1].getMesa(), jogador[3].getMesa())
+            };
+            
+            int c = maior[0].compareTo(maior[1]);
+            if (c < 0)
+                time[0].incPontos(3);
+            else if (c > 0)
+                time[1].incPontos(3);
+            else{
+                time[0].incPontos(1);
+                time[1].incPontos(1);
+            }
+            buttonIniciar.setVisible(true);
+            primeiro = (primeiro + 1) % 4;
+            return;
+        }   
+        jogador[atual].sinalizar();
+    }
+    
+    private void iniciarJogo(){
         Baralho b = new Baralho();
-        for (int i = 0; i < 1; i++)
+        atual = primeiro;
+        for (int i = 0; i < 4; i++)
             jogador[i].receberCarta(new Carta[]{b.getTopo(), b.getTopo(), b.getTopo()});
+        jogador[atual].sinalizar();
+        buttonIniciar.setVisible(false);        
+    }
+    
+    private void buttonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarActionPerformed
+        iniciarJogo();
     }//GEN-LAST:event_buttonIniciarActionPerformed
 
     private void buttonJ0C0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ0C0ActionPerformed
-            jogador[0].jogarCarta(0);
+        jogarCarta(0, 0);
     }//GEN-LAST:event_buttonJ0C0ActionPerformed
 
     private void buttonJ0CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ0CActionPerformed
@@ -280,12 +434,60 @@ public class Truco extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonJ0CActionPerformed
 
     private void buttonJ0C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ0C1ActionPerformed
-        jogador[0].jogarCarta(1);
+        jogarCarta(0, 1);
     }//GEN-LAST:event_buttonJ0C1ActionPerformed
 
     private void buttonJ0C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ0C2ActionPerformed
-        jogador[0].jogarCarta(2);
+        jogarCarta(0, 2);
     }//GEN-LAST:event_buttonJ0C2ActionPerformed
+
+    private void buttonJ1C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ1C2ActionPerformed
+        jogarCarta(1, 2);
+    }//GEN-LAST:event_buttonJ1C2ActionPerformed
+
+    private void buttonJ1C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ1C1ActionPerformed
+        jogarCarta(1, 1);
+    }//GEN-LAST:event_buttonJ1C1ActionPerformed
+
+    private void buttonJ1C0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ1C0ActionPerformed
+        jogarCarta(1, 0);
+    }//GEN-LAST:event_buttonJ1C0ActionPerformed
+
+    private void buttonJ1CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ1CActionPerformed
+
+    }//GEN-LAST:event_buttonJ1CActionPerformed
+
+    private void buttonJ2CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ2CActionPerformed
+
+    }//GEN-LAST:event_buttonJ2CActionPerformed
+
+    private void buttonJ2C0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ2C0ActionPerformed
+        jogarCarta(2, 0);
+    }//GEN-LAST:event_buttonJ2C0ActionPerformed
+
+    private void buttonJ2C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ2C1ActionPerformed
+        jogarCarta(2, 1);
+    }//GEN-LAST:event_buttonJ2C1ActionPerformed
+
+    private void buttonJ2C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ2C2ActionPerformed
+        jogarCarta(2, 2);
+    }//GEN-LAST:event_buttonJ2C2ActionPerformed
+
+    private void buttonJ3C0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ3C0ActionPerformed
+        jogarCarta(3, 0);
+    }//GEN-LAST:event_buttonJ3C0ActionPerformed
+
+    private void buttonJ3CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ3CActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonJ3CActionPerformed
+
+    private void buttonJ3C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ3C1ActionPerformed
+        jogarCarta(3, 1);
+    }//GEN-LAST:event_buttonJ3C1ActionPerformed
+
+    private void buttonJ3C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJ3C2ActionPerformed
+        jogarCarta(3, 2);
+    }//GEN-LAST:event_buttonJ3C2ActionPerformed
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -301,20 +503,23 @@ public class Truco extends javax.swing.JFrame {
     private javax.swing.JButton buttonJ0C0;
     private javax.swing.JButton buttonJ0C1;
     private javax.swing.JButton buttonJ0C2;
-    private javax.swing.JLabel labelJ1C0;
-    private javax.swing.JLabel labelJ1C1;
-    private javax.swing.JLabel labelJ1C2;
-    private javax.swing.JLabel labelJ2C0;
-    private javax.swing.JLabel labelJ2C1;
-    private javax.swing.JLabel labelJ2C2;
-    private javax.swing.JLabel labelJ3C0;
-    private javax.swing.JLabel labelJ3C1;
-    private javax.swing.JLabel labelJ3C2;
+    private javax.swing.JButton buttonJ1C;
+    private javax.swing.JButton buttonJ1C0;
+    private javax.swing.JButton buttonJ1C1;
+    private javax.swing.JButton buttonJ1C2;
+    private javax.swing.JButton buttonJ2C;
+    private javax.swing.JButton buttonJ2C0;
+    private javax.swing.JButton buttonJ2C1;
+    private javax.swing.JButton buttonJ2C2;
+    private javax.swing.JButton buttonJ3C;
+    private javax.swing.JButton buttonJ3C0;
+    private javax.swing.JButton buttonJ3C1;
+    private javax.swing.JButton buttonJ3C2;
+    private javax.swing.JLabel labelTime0Ponto;
     private javax.swing.JLabel labelTime1Ponto;
-    private javax.swing.JLabel labelTime2Ponto;
     private javax.swing.JLabel labelTituloPontuacao;
+    private javax.swing.JLabel labelTituloTime0;
     private javax.swing.JLabel labelTituloTime1;
-    private javax.swing.JLabel labelTituloTime2;
     private javax.swing.JPanel panelBase;
     private javax.swing.JPanel panelPontuacao;
     // End of variables declaration//GEN-END:variables

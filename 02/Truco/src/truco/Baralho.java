@@ -1,5 +1,6 @@
 package truco;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,60 +14,59 @@ public class Baralho {
     public Baralho() {
         this.baralho = new ArrayList<>();
 
-        baralho.add(new Carta("🂡", 14));
-        baralho.add(new Carta("🂢", 11));
-        baralho.add(new Carta("🂣", 12));
-        baralho.add(new Carta("🂤", 0));
-        baralho.add(new Carta("🂥", 1));
-        baralho.add(new Carta("🂦", 2));
-        baralho.add(new Carta("🂧", 3));
-        baralho.add(new Carta("🂪", 6));
-        baralho.add(new Carta("🂫", 7));
-        baralho.add(new Carta("🂬", 8));
-        baralho.add(new Carta("🂭", 9));
-        baralho.add(new Carta("🂮", 10));
+        baralho.add(new Carta("🂡", 14, Color.BLACK));
+        baralho.add(new Carta("🂢", 11, Color.BLACK));
+        baralho.add(new Carta("🂣", 12, Color.BLACK));
+        baralho.add(new Carta("🂤", 0, Color.BLACK));
+        baralho.add(new Carta("🂥", 1, Color.BLACK));
+        baralho.add(new Carta("🂦", 2, Color.BLACK));
+        baralho.add(new Carta("🂧", 3, Color.BLACK));
+        baralho.add(new Carta("🂪", 6, Color.BLACK));
+        baralho.add(new Carta("🂫", 7, Color.BLACK));
+        baralho.add(new Carta("🂬", 8, Color.BLACK));
+        baralho.add(new Carta("🂭", 9, Color.BLACK));
+        baralho.add(new Carta("🂮", 10, Color.BLACK));
+
+        baralho.add(new Carta("🂱", 10, Color.RED));
+        baralho.add(new Carta("🂲", 11, Color.RED));
+        baralho.add(new Carta("🂳", 12, Color.RED));
+        baralho.add(new Carta("🂴", 0, Color.RED));
+        baralho.add(new Carta("🂵", 1, Color.RED));
+        baralho.add(new Carta("🂶", 2, Color.RED));
+        baralho.add(new Carta("🂷", 15, Color.RED));
+        baralho.add(new Carta("🂺", 5, Color.RED));
+        baralho.add(new Carta("🂻", 6, Color.RED));
+        baralho.add(new Carta("🂼", 7, Color.RED));
+        baralho.add(new Carta("🂽", 8, Color.RED));
+        baralho.add(new Carta("🂾", 9, Color.RED));
 
 
-        baralho.add(new Carta("🂱", 10));
-        baralho.add(new Carta("🂲", 11));
-        baralho.add(new Carta("🂳", 12));
-        baralho.add(new Carta("🂴", 0));
-        baralho.add(new Carta("🂵", 1));
-        baralho.add(new Carta("🂶", 2));
-        baralho.add(new Carta("🂷", 15));
-        baralho.add(new Carta("🂺", 5));
-        baralho.add(new Carta("🂻", 6));
-        baralho.add(new Carta("🂼", 7));
-        baralho.add(new Carta("🂽", 8));
-        baralho.add(new Carta("🂾", 9));
+        baralho.add(new Carta("🃁", 10, Color.RED));
+        baralho.add(new Carta("🃂", 11, Color.RED));
+        baralho.add(new Carta("🃃", 12, Color.RED));
+        baralho.add(new Carta("🃄", 0, Color.RED));
+        baralho.add(new Carta("🃅", 1, Color.RED));
+        baralho.add(new Carta("🃆", 2, Color.RED));
+        baralho.add(new Carta("🃇", 13, Color.RED));
+        baralho.add(new Carta("🃊", 5, Color.RED));
+        baralho.add(new Carta("🃋", 6, Color.RED));
+        baralho.add(new Carta("🃌", 7, Color.RED));
+        baralho.add(new Carta("🃍", 8, Color.RED));
+        baralho.add(new Carta("🃎", 9, Color.RED));
 
 
-        baralho.add(new Carta("🃁", 10));
-        baralho.add(new Carta("🃂", 11));
-        baralho.add(new Carta("🃃", 12));
-        baralho.add(new Carta("🃄", 0));
-        baralho.add(new Carta("🃅", 1));
-        baralho.add(new Carta("🃆", 2));
-        baralho.add(new Carta("🃇", 13));
-        baralho.add(new Carta("🃊", 5));
-        baralho.add(new Carta("🃋", 6));
-        baralho.add(new Carta("🃌", 7));
-        baralho.add(new Carta("🃍", 8));
-        baralho.add(new Carta("🃎", 9));
-
-
-        baralho.add(new Carta("🃑", 10));
-        baralho.add(new Carta("🃒", 11));
-        baralho.add(new Carta("🃓", 12));
-        baralho.add(new Carta("🃔", 16));
-        baralho.add(new Carta("🃕", 0));
-        baralho.add(new Carta("🃖", 1));
-        baralho.add(new Carta("🃗", 2));
-        baralho.add(new Carta("🃚", 5));
-        baralho.add(new Carta("🃛", 6));
-        baralho.add(new Carta("🃜", 7));
-        baralho.add(new Carta("🃝", 8));
-        baralho.add(new Carta("🃞", 9));
+        baralho.add(new Carta("🃑", 10, Color.BLACK));
+        baralho.add(new Carta("🃒", 11, Color.BLACK));
+        baralho.add(new Carta("🃓", 12, Color.BLACK));
+        baralho.add(new Carta("🃔", 16, Color.BLACK));
+        baralho.add(new Carta("🃕", 0, Color.BLACK));
+        baralho.add(new Carta("🃖", 1, Color.BLACK));
+        baralho.add(new Carta("🃗", 2, Color.BLACK));
+        baralho.add(new Carta("🃚", 5, Color.BLACK));
+        baralho.add(new Carta("🃛", 6, Color.BLACK));
+        baralho.add(new Carta("🃜", 7, Color.BLACK));
+        baralho.add(new Carta("🃝", 8, Color.BLACK));
+        baralho.add(new Carta("🃞", 9, Color.BLACK));
         Collections.shuffle(baralho);
         random = new Random();
     }
