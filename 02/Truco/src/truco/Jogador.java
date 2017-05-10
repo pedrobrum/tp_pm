@@ -52,7 +52,4 @@ public class Jogador {
         mesa = null;
         return c;
     }
-    
-    
-    
 }
