@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Baralho {
 
+    private static Baralho instance = null;
     private final List<Carta> baralho;
-    private final Random random;
+    private int i;
 
-    public Baralho() {
+    private Baralho() {
         this.baralho = new ArrayList<>();
 
         baralho.add(new Carta("🂡", 14, Color.BLACK));
@@ -59,14 +59,22 @@ public class Baralho {
         baralho.add(new Carta("🃛", 6, Color.BLACK));
         baralho.add(new Carta("🃝", 8, Color.BLACK));
         baralho.add(new Carta("🃞", 9, Color.BLACK));
-        Collections.shuffle(baralho);
-        random = new Random();
     }
 
     public Carta getTopo() {
-        int i = random.nextInt(baralho.size());
         Carta c = baralho.get(i);
-        baralho.remove(i);
+        baralho.remove(i++);
         return c;
+    }
+    
+    public static Baralho getInstance(){
+        if (instance == null)
+            instance = new Baralho();
+        return instance;
+    }
+    
+    public void embaralhar(){
+        Collections.shuffle(baralho);   
+        i = 0;
     }
 }

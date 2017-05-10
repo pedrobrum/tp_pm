@@ -1,22 +1,24 @@
 package truco;
 
-import javax.swing.JButton;
+import GUI.JButtonCarta;
+import GUI.JLabelTime;
 
 public class Truco extends javax.swing.JFrame {
-
     
     private final Time time[];
     private final Jogador jogador[];
     private int primeiro;
     private int atual;
+    private final Baralho baralho;
     
     public Truco() {
         initComponents();
+        baralho = Baralho.getInstance();
         jogador = new Jogador[]{
-            new Jogador(new JButton[]{buttonJ0C0, buttonJ0C1, buttonJ0C2}, buttonJ0C),
-            new Jogador(new JButton[]{buttonJ1C0, buttonJ1C1, buttonJ1C2}, buttonJ1C),
-            new Jogador(new JButton[]{buttonJ2C0, buttonJ2C1, buttonJ2C2}, buttonJ2C),
-            new Jogador(new JButton[]{buttonJ3C0, buttonJ3C1, buttonJ3C2}, buttonJ3C)
+            new Jogador(new JButtonCarta[]{buttonJ0C0, buttonJ0C1, buttonJ0C2}, buttonJ0C),
+            new Jogador(new JButtonCarta[]{buttonJ1C0, buttonJ1C1, buttonJ1C2}, buttonJ1C),
+            new Jogador(new JButtonCarta[]{buttonJ2C0, buttonJ2C1, buttonJ2C2}, buttonJ2C),
+            new Jogador(new JButtonCarta[]{buttonJ3C0, buttonJ3C1, buttonJ3C2}, buttonJ3C)
         };
         time = new Time[]{
             new Time(labelTime0Ponto),
@@ -36,24 +38,24 @@ public class Truco extends javax.swing.JFrame {
         labelTituloPontuacao = new javax.swing.JLabel();
         labelTituloTime0 = new javax.swing.JLabel();
         labelTituloTime1 = new javax.swing.JLabel();
-        labelTime0Ponto = new javax.swing.JLabel();
-        labelTime1Ponto = new javax.swing.JLabel();
-        buttonJ0C = new javax.swing.JButton();
-        buttonJ0C0 = new javax.swing.JButton();
-        buttonJ0C1 = new javax.swing.JButton();
-        buttonJ0C2 = new javax.swing.JButton();
-        buttonJ1C = new javax.swing.JButton();
-        buttonJ1C0 = new javax.swing.JButton();
-        buttonJ1C1 = new javax.swing.JButton();
-        buttonJ1C2 = new javax.swing.JButton();
-        buttonJ2C = new javax.swing.JButton();
-        buttonJ2C0 = new javax.swing.JButton();
-        buttonJ2C1 = new javax.swing.JButton();
-        buttonJ2C2 = new javax.swing.JButton();
-        buttonJ3C = new javax.swing.JButton();
-        buttonJ3C0 = new javax.swing.JButton();
-        buttonJ3C1 = new javax.swing.JButton();
-        buttonJ3C2 = new javax.swing.JButton();
+        labelTime0Ponto = new JLabelTime();
+        labelTime1Ponto = new JLabelTime();
+        buttonJ0C = new JButtonCarta();
+        buttonJ0C0 = new JButtonCarta();
+        buttonJ0C1 = new JButtonCarta();
+        buttonJ0C2 = new JButtonCarta();
+        buttonJ1C = new JButtonCarta();
+        buttonJ1C0 = new JButtonCarta();
+        buttonJ1C1 = new JButtonCarta();
+        buttonJ1C2 = new JButtonCarta();
+        buttonJ2C = new JButtonCarta();
+        buttonJ2C0 = new JButtonCarta();
+        buttonJ2C1 = new JButtonCarta();
+        buttonJ2C2 = new JButtonCarta();
+        buttonJ3C = new JButtonCarta();
+        buttonJ3C0 = new JButtonCarta();
+        buttonJ3C1 = new JButtonCarta();
+        buttonJ3C2 = new JButtonCarta();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -413,12 +415,15 @@ public class Truco extends javax.swing.JFrame {
     }
     
     private void iniciarJogo(){
-        Baralho b = new Baralho();
+        baralho.embaralhar();
         atual = primeiro;
         for (int i = 0; i < 4; i++)
-            jogador[i].receberCarta(new Carta[]{b.getTopo(), b.getTopo(), b.getTopo()});
+            jogador[i].receberCarta(new Carta[]{
+                baralho.getTopo(),
+                baralho.getTopo(),
+                baralho.getTopo()});
         jogador[atual].sinalizar();
-        buttonIniciar.setVisible(false);        
+        buttonIniciar.setVisible(false);
     }
     
     private void buttonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarActionPerformed
@@ -491,6 +496,7 @@ public class Truco extends javax.swing.JFrame {
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Truco().setVisible(true);
             }
@@ -499,24 +505,24 @@ public class Truco extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonIniciar;
-    private javax.swing.JButton buttonJ0C;
-    private javax.swing.JButton buttonJ0C0;
-    private javax.swing.JButton buttonJ0C1;
-    private javax.swing.JButton buttonJ0C2;
-    private javax.swing.JButton buttonJ1C;
-    private javax.swing.JButton buttonJ1C0;
-    private javax.swing.JButton buttonJ1C1;
-    private javax.swing.JButton buttonJ1C2;
-    private javax.swing.JButton buttonJ2C;
-    private javax.swing.JButton buttonJ2C0;
-    private javax.swing.JButton buttonJ2C1;
-    private javax.swing.JButton buttonJ2C2;
-    private javax.swing.JButton buttonJ3C;
-    private javax.swing.JButton buttonJ3C0;
-    private javax.swing.JButton buttonJ3C1;
-    private javax.swing.JButton buttonJ3C2;
-    private javax.swing.JLabel labelTime0Ponto;
-    private javax.swing.JLabel labelTime1Ponto;
+    private JButtonCarta buttonJ0C;
+    private JButtonCarta buttonJ0C0;
+    private JButtonCarta buttonJ0C1;
+    private JButtonCarta buttonJ0C2;
+    private JButtonCarta buttonJ1C;
+    private JButtonCarta buttonJ1C0;
+    private JButtonCarta buttonJ1C1;
+    private JButtonCarta buttonJ1C2;
+    private JButtonCarta buttonJ2C;
+    private JButtonCarta buttonJ2C0;
+    private JButtonCarta buttonJ2C1;
+    private JButtonCarta buttonJ2C2;
+    private JButtonCarta buttonJ3C;
+    private JButtonCarta buttonJ3C0;
+    private JButtonCarta buttonJ3C1;
+    private JButtonCarta buttonJ3C2;
+    private JLabelTime labelTime0Ponto;
+    private JLabelTime labelTime1Ponto;
     private javax.swing.JLabel labelTituloPontuacao;
     private javax.swing.JLabel labelTituloTime0;
     private javax.swing.JLabel labelTituloTime1;

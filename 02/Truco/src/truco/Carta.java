@@ -40,4 +40,10 @@ public class Carta implements Comparable<Carta>{
     public String toString(){
         return simbolo;
     }
+
+    public interface Exibivel {
+        public void setText(String s);
+        public void setColor(Color c);
+        public void setSinalizacao(boolean b);
+    }
 }

@@ -1,41 +1,37 @@
 package truco;
 
-import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.border.LineBorder;
-
 public class Jogador {
     private Carta carta[];
     private Carta mesa;
-    private final JButton[] buttonCarta;
-    private final JButton buttonJogada;
+    private final Carta.Exibivel exibivelCarta[];
+    private final Carta.Exibivel exibivelJogada;
     
-    public Jogador(JButton labelCarta[], JButton labelJogada){
-        this.buttonCarta = labelCarta;
-        this.buttonJogada = labelJogada;
+    public Jogador(Carta.Exibivel exibivelCarta[], Carta.Exibivel exibivelJogada){
+        this.exibivelCarta = exibivelCarta;
+        this.exibivelJogada = exibivelJogada;
         for (int i = 0; i < 3; i++)
-                labelCarta[i].setText("");
-        labelJogada.setText("");
+                exibivelCarta[i].setText("");
+        exibivelJogada.setText("");
     }
     
     public void receberCarta(Carta carta[]){
         this.carta = carta;
         for (int i = 0; i < 3; i++){
-            buttonCarta[i].setText(carta[i].getSimbolo());
-            buttonCarta[i].setForeground(carta[i].getCor());
+            exibivelCarta[i].setText(carta[i].getSimbolo());
+            exibivelCarta[i].setColor(carta[i].getCor());
         }
-        buttonJogada.setText("");
+        exibivelJogada.setText("");
     }
     
     public boolean jogarCarta(int c){
         if (carta[c] != null){
-            buttonCarta[c].setText("");
-            buttonJogada.setText(carta[c].toString());
-            buttonJogada.setForeground(carta[c].getCor());
+            exibivelCarta[c].setText("");
+            exibivelJogada.setText(carta[c].toString());
+            exibivelJogada.setColor(carta[c].getCor());
             mesa = carta[c];
             carta[c] = null;
             for (int i = 0; i < 3; i++)
-                buttonCarta[i].setBorder(null);
+                exibivelCarta[i].setSinalizacao(false);
             return true;
         }
         return false;
@@ -43,8 +39,8 @@ public class Jogador {
     
     public void sinalizar(){
         for (int i = 0; i < 3; i++)
-            if (carta[i] != null && buttonCarta[i] != null)
-               buttonCarta[i].setBorder(new LineBorder(Color.yellow));
+            if (carta[i] != null && exibivelCarta[i] != null)
+               exibivelCarta[i].setSinalizacao(true);
     }
 
     public Carta getMesa(){

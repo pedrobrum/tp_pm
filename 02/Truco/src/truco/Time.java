@@ -1,18 +1,20 @@
 package truco;
 
-import javax.swing.JLabel;
-
 public class Time {
     private int pontos;
-    private final JLabel labelPontos;
+    private final Exibivel exibivelPontos;
 
-    public Time(JLabel labelPontos) {
-        this.labelPontos = labelPontos;
+    public Time(Exibivel exibivelPontos) {
+        this.exibivelPontos = exibivelPontos;
         this.pontos = 0;
     }
 
     public void incPontos(int pontos) {
         this.pontos += pontos;
-        labelPontos.setText(String.valueOf(this.pontos));
+        exibivelPontos.setText(String.valueOf(this.pontos));
+    }
+    
+    public interface Exibivel{
+        public void setText(String s);
     }
 }
