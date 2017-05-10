@@ -21,9 +21,7 @@ public class Baralho {
         baralho.add(new Carta("🂥", 1, Color.BLACK));
         baralho.add(new Carta("🂦", 2, Color.BLACK));
         baralho.add(new Carta("🂧", 3, Color.BLACK));
-        baralho.add(new Carta("🂪", 6, Color.BLACK));
         baralho.add(new Carta("🂫", 7, Color.BLACK));
-        baralho.add(new Carta("🂬", 8, Color.BLACK));
         baralho.add(new Carta("🂭", 9, Color.BLACK));
         baralho.add(new Carta("🂮", 10, Color.BLACK));
 
@@ -34,9 +32,7 @@ public class Baralho {
         baralho.add(new Carta("🂵", 1, Color.RED));
         baralho.add(new Carta("🂶", 2, Color.RED));
         baralho.add(new Carta("🂷", 15, Color.RED));
-        baralho.add(new Carta("🂺", 5, Color.RED));
         baralho.add(new Carta("🂻", 6, Color.RED));
-        baralho.add(new Carta("🂼", 7, Color.RED));
         baralho.add(new Carta("🂽", 8, Color.RED));
         baralho.add(new Carta("🂾", 9, Color.RED));
 
@@ -48,9 +44,7 @@ public class Baralho {
         baralho.add(new Carta("🃅", 1, Color.RED));
         baralho.add(new Carta("🃆", 2, Color.RED));
         baralho.add(new Carta("🃇", 13, Color.RED));
-        baralho.add(new Carta("🃊", 5, Color.RED));
         baralho.add(new Carta("🃋", 6, Color.RED));
-        baralho.add(new Carta("🃌", 7, Color.RED));
         baralho.add(new Carta("🃍", 8, Color.RED));
         baralho.add(new Carta("🃎", 9, Color.RED));
 
@@ -62,9 +56,7 @@ public class Baralho {
         baralho.add(new Carta("🃕", 0, Color.BLACK));
         baralho.add(new Carta("🃖", 1, Color.BLACK));
         baralho.add(new Carta("🃗", 2, Color.BLACK));
-        baralho.add(new Carta("🃚", 5, Color.BLACK));
         baralho.add(new Carta("🃛", 6, Color.BLACK));
-        baralho.add(new Carta("🃜", 7, Color.BLACK));
         baralho.add(new Carta("🃝", 8, Color.BLACK));
         baralho.add(new Carta("🃞", 9, Color.BLACK));
         Collections.shuffle(baralho);
