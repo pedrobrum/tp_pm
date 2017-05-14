@@ -58,58 +58,64 @@
                           <Component id="panelPontuacao" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="166" max="32767" attributes="0"/>
-                                  <Component id="buttonJ0C0" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="buttonJ1C2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buttonJ0C1" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonJ0C" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonJ0C2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buttonJ1C1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonJ1C0" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="buttonJ2C0" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="buttonJ2C1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="buttonJ2C" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="labelFeed" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="buttonJ0C0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="buttonJ1C2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="buttonJ2C2" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="buttonJ0C1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonJ0C" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="buttonJ0C2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="buttonJ1C" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="buttonJ3C" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="buttonJ1C1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonJ1C0" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="93" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="buttonJ2C0" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="buttonJ2C1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="buttonJ2C" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="buttonJ2C2" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="buttonJ1C" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="buttonJ3C" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="buttonIniciar" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="buttonJ3C0" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonJ3C1" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonJ3C2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonTrucar" alignment="1" max="32767" attributes="0"/>
+                      <Component id="buttonDesistir" alignment="1" max="32767" attributes="0"/>
+                      <Component id="buttonIniciar" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -151,14 +157,21 @@
                               <Component id="buttonJ3C2" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="60" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buttonJ0C0" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="buttonJ0C1" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="buttonJ0C2" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="buttonJ0C0" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <Component id="buttonJ0C1" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <Component id="buttonJ0C2" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="labelFeed" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="buttonDesistir" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonTrucar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonIniciar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -168,14 +181,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="buttonIniciar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Iniciar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonIniciarActionPerformed"/>
-          </Events>
-        </Component>
         <Container class="javax.swing.JPanel" name="panelPontuacao">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -255,7 +260,7 @@
                 <Property name="text" type="java.lang.String" value="?"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JLabelTime()"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GUI.JLabelExibivel()"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="labelTime1Ponto">
@@ -263,7 +268,7 @@
                 <Property name="text" type="java.lang.String" value="?"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JLabelTime()"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GUI.JLabelExibivel()"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -284,6 +289,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ0CActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ0C0">
           <Properties>
@@ -321,6 +329,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ0C1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ0C2">
           <Properties>
@@ -338,6 +349,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ0C2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ1C">
           <Properties>
@@ -355,6 +369,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ1CActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ1C0">
           <Properties>
@@ -372,6 +389,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ1C0ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ1C1">
           <Properties>
@@ -389,6 +409,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ1C1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ1C2">
           <Properties>
@@ -406,6 +429,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ1C2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ2C">
           <Properties>
@@ -423,6 +449,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ2CActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ2C0">
           <Properties>
@@ -440,6 +469,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ2C0ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ2C1">
           <Properties>
@@ -457,6 +489,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ2C1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ2C2">
           <Properties>
@@ -474,6 +509,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ2C2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ3C">
           <Properties>
@@ -491,6 +529,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ3CActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ3C0">
           <Properties>
@@ -508,6 +549,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ3C0ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ3C1">
           <Properties>
@@ -525,6 +569,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ3C1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonJ3C2">
           <Properties>
@@ -542,6 +589,41 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJ3C2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JButtonCarta()"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonIniciar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Iniciar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonIniciarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonTrucar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Trucar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTrucarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonDesistir">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Desistir"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDesistirActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelFeed">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GUI.JLabelExibivel()"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

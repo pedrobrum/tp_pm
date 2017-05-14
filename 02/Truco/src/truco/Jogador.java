@@ -37,10 +37,10 @@ public class Jogador {
         return false;
     }
     
-    public void sinalizar(){
+    public void sinalizar(boolean b){
         for (int i = 0; i < 3; i++)
             if (carta[i] != null && exibivelCarta[i] != null)
-               exibivelCarta[i].setSinalizacao(true);
+               exibivelCarta[i].setSinalizacao(b);
     }
 
     public Carta getMesa(){
