@@ -63,37 +63,45 @@ public class Truco {
     }
     
     public void desistir(){
-        if (estado != EstadoRodada.FINALIZADA)
-            time[atual%2].incPontos(Pontos(estado));
+        System.out.println(estado);
+        System.out.println(atual);
+        if (estado == EstadoRodada.PRETRUCO) //Caso o time não aceite o truco o atual rece os pontos
+            finalizarRodada(atual%2, Pontos(estado));
+        else if (estado != EstadoRodada.FINALIZADA) //Caso o time desista, o próximo recebe os pontos
+            finalizarRodada((atual+1)%2, Pontos(estado));
     }
     
     public void jogarCarta(int iJ, int iC){
-        if (estado == EstadoRodada.PRETRUCO)
+        if (estado == EstadoRodada.FINALIZADA)
             return;
         if (atual != iJ || atual == -1)
             return;
+        if (estado == EstadoRodada.PRETRUCO)
+            aceitar();
         jogador[iJ].jogarCarta(iC);
         jogador[atual].sinalizar(false);
         atual = (atual + 1) % 4;
-        jogador[atual].sinalizar(true);
-        if (atual == primeiro)
-            finalizarRodada();
+        if (atual == primeiro){
+            Carta maior[] = new Carta[]{
+                Carta.Max(jogador[0].getMesa(), jogador[2].getMesa()),
+                Carta.Max(jogador[1].getMesa(), jogador[3].getMesa())
+            };
+
+            int c = maior[0].compareTo(maior[1]);
+            if (c < 0)
+                finalizarRodada(0, Pontos(estado));
+            else if (c > 0)
+                finalizarRodada(1, Pontos(estado));
+            else
+                finalizarRodada(primeiro%2, Pontos(estado));            
+        }
+        else
+            jogador[atual].sinalizar(true);
     }
     
-    private void finalizarRodada(){
-        Carta maior[] = new Carta[]{
-            Carta.Max(jogador[0].getMesa(), jogador[2].getMesa()),
-            Carta.Max(jogador[1].getMesa(), jogador[3].getMesa())
-        };
-        
-        int c = maior[0].compareTo(maior[1]);
-        if (c < 0)
-            time[0].incPontos(Pontos(estado));
-        else if (c > 0)
-            time[1].incPontos(Pontos(estado));
-        else{
-            time[primeiro%2].incPontos(Pontos(estado));
-        }
+    private void finalizarRodada(int vencedor, int inc){
+        System.out.println(vencedor + " " + inc);
+        time[vencedor].incPontos(inc);
         primeiro = (primeiro + 1) % 4;
         estado = EstadoRodada.FINALIZADA;
     }

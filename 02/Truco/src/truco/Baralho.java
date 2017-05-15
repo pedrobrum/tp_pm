@@ -9,7 +9,7 @@ public class Baralho {
 
     private static Baralho instance = null;
     private final List<Carta> baralho;
-    private int i;
+    private int topo;
 
     private Baralho() {
         this.baralho = new ArrayList<>();
@@ -62,9 +62,7 @@ public class Baralho {
     }
 
     public Carta getTopo() {
-        Carta c = baralho.get(i);
-        baralho.remove(i++);
-        return c;
+        return baralho.get(topo);
     }
     
     public static Baralho getInstance(){
@@ -75,6 +73,6 @@ public class Baralho {
     
     public void embaralhar(){
         Collections.shuffle(baralho);   
-        i = 0;
+        topo = 0;
     }
 }

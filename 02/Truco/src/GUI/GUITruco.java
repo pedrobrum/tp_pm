@@ -509,7 +509,7 @@ public class GUITruco extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTrucarActionPerformed
 
     private void buttonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDesistirActionPerformed
-        truco.aceitar();
+        truco.desistir();
     }//GEN-LAST:event_buttonDesistirActionPerformed
     
     public static void main(String args[]) {
