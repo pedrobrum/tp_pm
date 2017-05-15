@@ -62,7 +62,7 @@ public class Baralho {
     }
 
     public Carta getTopo() {
-        return baralho.get(topo);
+        return baralho.get(topo++);
     }
     
     public static Baralho getInstance(){

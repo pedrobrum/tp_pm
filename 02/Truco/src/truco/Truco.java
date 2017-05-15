@@ -1,108 +1,170 @@
 
 package truco;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Truco {
     
     private enum EstadoRodada{
-        FINALIZADA, INICIALIZADA, PRETRUCO, TRUCO
+        FINALIZADA, INICIALIZADA, PRETRUCO, TRUCO, ENTRERODADAS
     }
-    private static int Pontos(EstadoRodada estado){
-        switch (estado){
-            case TRUCO:
-                return 3;
-            default:
-                return 1;
-        }
-    }
-    
+        
     private final Time time[];
     private final Jogador jogador[];
+    private final Baralho baralho;
+    private final Exibivel feed;
+    private final Alertador alertador;
+    private int primeiroRodada;
     private int primeiro;
     private int atual;
-    private final Baralho baralho;
+    private boolean truco;
     private EstadoRodada estado;
-    private final Exibivel feed;
+    private List<Integer> vencedorRodada;
 
-    public Truco(Time[] time, Jogador[] jogador, Baralho baralho, Exibivel feed) {
+    public Truco(Time[] time, Jogador[] jogador,
+            Baralho baralho, Exibivel feed,
+            Alertador alertador) {
         this.time = time;
         this.jogador = jogador;
         this.baralho = baralho;
         this.feed = feed;
+        this.alertador = alertador;
+        reiniciar();
+    }
+    
+    public void reiniciar(){
+        this.estado = EstadoRodada.FINALIZADA;
+        primeiroRodada = 0;
+        for (int i = 0; i < 2; i++)
+            time[i].resetar();
+        for (int i = 0; i < 4; i++)
+            jogador[i].resetar();
     }
     
     public void iniciarJogo(){
-        primeiro = 0;
-        time[0].resetar();
-        time[1].resetar();
+        truco = false;
         estado = EstadoRodada.FINALIZADA;
+        primeiro = primeiroRodada;
+        primeiroRodada = (primeiroRodada + 1) % 4;
         iniciarRodada();
+    }
+    
+    public void iniciarRodada(boolean truco){
+        iniciarRodada();
+        this.truco = truco;
     }
     
     public void iniciarRodada(){
         if (estado == EstadoRodada.FINALIZADA){
             baralho.embaralhar();
-            atual = primeiro;
             for (int i = 0; i < 4; i++)
                 jogador[i].receberCarta(new Carta[]{
                     baralho.getTopo(),
                     baralho.getTopo(),
-                    baralho.getTopo()});
-            jogador[atual].sinalizar(true);
-            estado = EstadoRodada.INICIALIZADA;
+                    baralho.getTopo()}
+                );
+            vencedorRodada = new ArrayList<>();
+            primeiro = primeiroRodada;
+            primeiroRodada = (primeiroRodada + 1) % 4;
         }
+        atual = primeiro;
+        for (int i = 0; i < 4; i++)
+            jogador[i].limpaMesa();
+        jogador[atual].sinalizar(true);
+        estado = EstadoRodada.INICIALIZADA;
+        feed.setText("Rodada iniciada!");
     }
     
     public void trucar(){
-        if (estado == EstadoRodada.INICIALIZADA)
+        if (estado == EstadoRodada.INICIALIZADA){
             estado = EstadoRodada.PRETRUCO;
+            feed.setText("Truco!!!");
+        }
     }
     
     public void aceitar(){
-        if (estado == EstadoRodada.PRETRUCO)
+        if (estado == EstadoRodada.PRETRUCO){
             estado = EstadoRodada.TRUCO;
+            truco = true;
+            feed.setText("Valendo 3 pontos!");
+        }
     }
     
     public void desistir(){
-        System.out.println(estado);
-        System.out.println(atual);
-        if (estado == EstadoRodada.PRETRUCO) //Caso o time não aceite o truco o atual rece os pontos
-            finalizarRodada(atual%2, Pontos(estado));
-        else if (estado != EstadoRodada.FINALIZADA) //Caso o time desista, o próximo recebe os pontos
-            finalizarRodada((atual+1)%2, Pontos(estado));
+        int inc = truco ? 3 : 1;
+        vencedorRodada.clear();
+        if (estado == EstadoRodada.PRETRUCO){
+            vencedorRodada.add(atual%2);
+            finalizarRodada(atual%2, inc);
+        }
+        else if (estado != EstadoRodada.ENTRERODADAS){
+            vencedorRodada.add((atual+1)%2);
+            finalizarRodada((atual+1)%2, inc);
+        }
     }
     
     public void jogarCarta(int iJ, int iC){
-        if (estado == EstadoRodada.FINALIZADA)
+        if (estado == EstadoRodada.ENTRERODADAS ||
+            estado == EstadoRodada.PRETRUCO ||
+            estado == EstadoRodada.FINALIZADA)
             return;
         if (atual != iJ || atual == -1)
             return;
-        if (estado == EstadoRodada.PRETRUCO)
-            aceitar();
-        jogador[iJ].jogarCarta(iC);
+        if (!jogador[iJ].jogarCarta(iC))
+            return;
         jogador[atual].sinalizar(false);
         atual = (atual + 1) % 4;
         if (atual == primeiro){
-            Carta maior[] = new Carta[]{
-                Carta.Max(jogador[0].getMesa(), jogador[2].getMesa()),
-                Carta.Max(jogador[1].getMesa(), jogador[3].getMesa())
-            };
+            int vencedor = 0;
+            Carta maior = jogador[vencedor].getMesa();
+            for (int i = 1; i < 4; i++){
+                int c = jogador[i].getMesa().compareTo(maior);
+                if (c > 0){
+                    vencedor = i;
+                    maior = jogador[i].getMesa();
+                }
+                else if (c == 0 && i%2 != vencedor)
+                    vencedor = -1;
+            }
 
-            int c = maior[0].compareTo(maior[1]);
-            if (c < 0)
-                finalizarRodada(0, Pontos(estado));
-            else if (c > 0)
-                finalizarRodada(1, Pontos(estado));
+            int inc = truco ? 3 : 1;
+            if (vencedor == -1)
+                finalizarRodada(primeiro%2, inc);
             else
-                finalizarRodada(primeiro%2, Pontos(estado));            
+                finalizarRodada(vencedor, inc);
         }
         else
             jogador[atual].sinalizar(true);
     }
     
     private void finalizarRodada(int vencedor, int inc){
-        System.out.println(vencedor + " " + inc);
+        for (int i = 0; i < 4; i++)
+            jogador[i].sinalizar(false);
+        primeiro = vencedor;
+        vencedor %= 2;
+        estado = EstadoRodada.ENTRERODADAS;
+        feed.setText("O time " + Time.getNome(vencedor) + " venceu!");
+        switch (vencedorRodada.size()){
+            case 0:{
+                vencedorRodada.add(vencedor);
+                return;
+            }
+            case 1:{
+                if (vencedorRodada.get(0) != vencedor){
+                    vencedorRodada.add(vencedor);
+                    return;
+                }
+            }break;
+            default:{}
+        }
+        alertador.showMessage(inc + " pontos para " + Time.getNome(vencedor) + "!");
         time[vencedor].incPontos(inc);
-        primeiro = (primeiro + 1) % 4;
         estado = EstadoRodada.FINALIZADA;
+        iniciarRodada(false);
+        if (time[vencedor].getPontos() >= 12){
+            alertador.showMessage("O time " + Time.getNome(vencedor) + " venceu o jogo!");
+            reiniciar();
+        }
     }
 }

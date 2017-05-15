@@ -10,7 +10,7 @@ public class Jogador {
         this.exibivelCarta = exibivelCarta;
         this.exibivelJogada = exibivelJogada;
         for (int i = 0; i < 3; i++)
-                exibivelCarta[i].setText("");
+            exibivelCarta[i].setText("");
         exibivelJogada.setText("");
     }
     
@@ -44,8 +44,17 @@ public class Jogador {
     }
 
     public Carta getMesa(){
-        Carta c = mesa;
-        mesa = null;
-        return c;
+        return mesa;
+    }
+    
+    public void limpaMesa(){
+        exibivelJogada.setText("");
+    }
+    
+    public void resetar(){
+        for (int i = 0; i < 3; i++){
+            exibivelCarta[i].setText("");
+            exibivelCarta[i].setSinalizacao(false);
+        }
     }
 }

@@ -7,12 +7,6 @@ public class Carta implements Comparable<Carta>{
     private final Integer valor;
     private final Color cor;
     
-    public static Carta Max(Carta l, Carta r){
-        if (l.compareTo(r) > 0)
-            return l;
-        return r;
-    }
-    
     public Carta(String simbolo, int valor, Color cor) {
         this.simbolo = simbolo;
         this.valor = valor;
